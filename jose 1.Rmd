@@ -1,0 +1,115 @@
+---
+title: Tecnicas y Herramientas modernas
+authors:
+  - name: Collazo-Podestá-Giugno-Mattiazzi-Sarmiento-Frery
+  
+    thanks: Use footnote for providing further information about author (webpage, alternative address)---*not* for acknowledging funding agencies. Optional.
+    department: Facultad de Ingenieria
+    affiliation: Universidad Nacional de Cuyo
+    location: Mendoza, Argentina
+  
+  
+Modulo 2: |
+  Enter the text of your abstract here.
+keywords:
+  - blah
+  - blee
+  - bloo
+  - these are optional and can be removed
+bibliography: references.bib
+biblio-style: unsrt
+output: rticles::arxiv_article
+---
+## Vectores y Matrices
+un vector es una estructura de datos que almacena numeros de doble precision.
+
+
+```{r}
+mi_vector_a <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+mi_vector_b <- seq(1:10000)
+```
+
+
+```{r}
+mi_matriz_c <- matrix(mi_vector_b,nrow=100, byrow=TRUE) 
+mi_matriz_c
+```
+
+
+
+Usando mi_matriz_c[-2, ] entonces lee toda la matriz excepto la fila 2.
+
+
+
+```{r}
+start_time <- Sys.time()
+mi_matriz_c
+end_time <- Sys.time()
+end_time - start_time
+```
+
+## Ejercicio 1: Penitencia de Gauss
+```{r}
+start_time <- Sys.time()
+A <- 0
+for (i in 1:50000) { A[i] <- (i*2)}
+tail (A)
+end_time <- Sys.time()
+end_time - start_time
+
+start_time <- Sys.time()
+A <- seq(from = 2, by = 2, length.out = 50000)
+tail(A)
+end_time <- Sys.time()
+end_time - start_time
+```
+
+
+## Ejercicio 2: Fibonacci
+
+```{r}
+fibonacci <- c(0, 1)
+while (tail(fibonacci, 1) <= 1000000) {
+  next_term <- tail(fibonacci, 1) + tail(fibonacci, 2)
+  fibonacci <- c(fibonacci, next_term)
+}
+fibonacci <- fibonacci[-length(fibonacci)]  # Retirer le dernier terme excédant 100000
+print(fibonacci)
+
+```
+
+
+## Ejercicio 3: Sort/Burbuja
+```{r}
+start_time <- Sys.time()
+x<-sample(1:100,10)
+# Creo una funci?n para ordenar
+burbuja <- function(x){
+n<-length(x)
+for(j in 1:(n-1)){
+for(i in 1:(n-j)){
+if(x[i]>x[i+1]){
+temp<-x[i]
+x[i]<-x[i+1]
+x[i+1]<-temp
+}
+}
+}
+return(x)
+}
+res<-burbuja(x)
+end_time <- Sys.time()
+end_time - start_time
+```
+
+```{r}
+start_time <- Sys.time()
+x<-sample(1:100,10)
+sort(x)
+end_time <- Sys.time()
+end_time - start_time
+```
+
+
+
+
